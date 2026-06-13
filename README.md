@@ -1,4 +1,4 @@
-# 🚦 Smart Traffic Violation Detection & Vehicle Safety Monitoring System
+# 🚦 WIRELESS BASED TRAFFIC VIOLATION DETECTION
 
 <p align="center">
   <img src="assets/banner.gif" alt="Project Banner" width="100%">
@@ -16,7 +16,7 @@
 
 ## 📖 Overview
 
-The **Smart Traffic Violation Detection & Vehicle Safety Monitoring System** is an IoT-based solution designed to automate traffic rule enforcement, improve road safety, and provide real-time monitoring of vehicles.
+The **WIRELESS BASED TRAFFIC VIOLATION DETECTION** is an IoT-based solution designed to automate traffic rule enforcement, improve road safety, and provide real-time monitoring of vehicles.
 
 The system combines **Arduino, GSM, GPS, Alcohol Sensors, Piezoelectric Sensors, Wireless Detection Technology, and Python-based Monitoring** to identify traffic violations, detect accidents, track vehicle location, and instantly notify authorities.
 
