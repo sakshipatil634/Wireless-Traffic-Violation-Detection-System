@@ -188,68 +188,24 @@ Wireless-Traffic-Violation-Detection/
 │
 ├── Arduino_Code/
 │   ├── main.ino
-│   └── modules/
 │
 ├── Python_Monitoring/
 │   ├── camera_capture.py
-│   ├── gps_logger.py
-│   └── alert_system.py
-│
+│   
 ├── Hardware/
 │   ├── circuit_diagram.png
 │   ├── block_diagram.png
 │   └── hardware_setup.jpg
 │
-├── assets/
-│   ├── demo.gif
-│   ├── output1.png
-│   └── output2.png
+├── Paper/ 
+│   ├── publication_paper.pdf
 │
 ├── Documentation/
 │   └── Project_Report.pdf
+|   ├── Project_PPT.ppt
 │
 └── README.md
 ```
-
----
-
-# 🚀 Installation
-
-## Arduino Setup
-
-1. Install Arduino IDE
-2. Connect Arduino UNO
-3. Install required libraries:
-   - TinyGPS++
-   - SoftwareSerial
-   - LiquidCrystal
-
-4. Upload the Arduino sketch
-
-```cpp
-Upload -> main.ino
-```
-
----
-
-## Python Setup
-
-```bash
-git clone https://github.com/yourusername/Traffic-Violation-Detection.git
-
-cd Traffic-Violation-Detection
-
-pip install opencv-python
-pip install pyserial
-pip install geopy
-```
-
-Run:
-
-```bash
-python camera_capture.py
-```
-
 ---
 
 # 📊 Sample Output
@@ -278,31 +234,14 @@ Penalty Generated Successfully
 EMERGENCY ALERT
 --------------------------------
 
-Accident Detected
-
-Latitude  : 17.12345
-Longitude : 74.56789
+Vehicle ID : MH12AB1234
+Violation  : Accident Hit
+Location   : 17.12345, 74.56789
+Time       : 10:45 AM
 
 Emergency Services Notified
 ```
 
----
-
-# 📸 Project Demonstration
-
-## Hardware Setup
-
-![Hardware](assets/hardware_setup.jpg)
-
-## Circuit Diagram
-
-![Circuit](assets/circuit_diagram.png)
-
-## System Output
-
-![Output](assets/output1.png)
-
----
 
 # 📈 Future Enhancements
 
@@ -349,7 +288,7 @@ Emergency Services Notified
 
 # 👨‍💻 Author
 
-**Sakshi Patil**
+**Sakshi Patil And TEAM**
 
 Electronics & Telecommunication Engineering
 
