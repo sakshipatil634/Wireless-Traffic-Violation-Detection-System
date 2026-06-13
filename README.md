@@ -5,7 +5,7 @@
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Hardware](https://img.shields.io/badge/Hardware-IoT-FFB900?style=for-the-badge)
 
-> An automated, IoT-driven vehicle monitoring system designed to detect traffic violations, prevent drunk driving, and provide real-time accident alerts using wireless energy transfer and GPS/GSM tracking.
+> [cite_start]An automated, IoT-driven vehicle monitoring system designed to detect traffic violations, prevent drunk driving, and provide real-time accident alerts using wireless energy transfer and GPS/GSM tracking[cite: 25, 55].
 
 ---
 
@@ -16,21 +16,22 @@
 ---
 
 ## 🚀 Overview
-Traffic congestion and road accidents are critical challenges in growing cities. This system bridges hardware sensors and software logic to create a "Smart Black Box" for vehicles. It continuously monitors the vehicle's state and interacts with smart traffic signals via wireless coils to enforce traffic discipline automatically.
+[cite_start]Traffic congestion and road accidents are critical challenges, often worsened when drivers jump signals or drive under the influence[cite: 4, 6]. [cite_start]This system acts as a "Smart Black Box" for vehicles, continuously monitoring the vehicle's state and interacting with smart traffic signals via wireless coils to enforce traffic discipline automatically[cite: 25]. 
 
 **Core Objectives:**
-* Automate penalty logging for traffic rule breakers.
-* Prevent unauthorized or impaired individuals from operating vehicles.
-* Reduce emergency response times during accidents.
+* [cite_start]Automate penalty logging for traffic rule breakers[cite: 25].
+* [cite_start]Prevent unauthorized or impaired individuals from operating vehicles[cite: 338, 340].
+* [cite_start]Reduce emergency response times during accidents[cite: 231].
 
 ---
 
 ## ✨ Key Features
 
-* 🚫 **Signal Jump Detection:** Uses wireless electromagnetic coils embedded in zebra crossings. If a vehicle crosses during a red light, the secondary coil in the vehicle activates, logging the violation.
-* 🍻 **Drunk Driving Prevention:** An MQ-3 alcohol sensor monitors the driver's cabin. If alcohol is detected above the threshold, the system cuts the ignition and automatically deducts a penalty.
-* 💥 **Real-Time Accident Alerts:** A piezoelectric sensor detects sudden impacts. Upon collision, the ATmega328P microcontroller triggers the GPS/GSM modules to instantly share the live location with emergency services and family.
-* 📷 **Automated Surveillance:** A Python-based webcam script captures video footage of vehicles breaking traffic rules for visual evidence.
+* 🚫 **Signal Jump Detection (Smart Penalty):** Uses wireless electromagnetic coils. [cite_start]If a vehicle crosses a zebra crossing during a red light, the active transmitter coil on the road energizes a secondary receiving coil in the vehicle, immediately logging the violation and sending an SMS to the authorities and the owner[cite: 336].
+* [cite_start]🍻 **Drunk Driving Prevention:** An MQ-3 alcohol sensor monitors the driver[cite: 188]. [cite_start]If alcohol is detected, a penalty is directly deducted from their bank account, and the system can optionally block the ignition[cite: 190, 338].
+* [cite_start]💥 **Real-Time Accident Alerts:** A piezoelectric pressure sensor detects sudden impacts[cite: 225, 337]. [cite_start]Upon collision, the microcontroller triggers the GSM module to instantly send an SMS with GPS coordinates to the police, hospitals, and family members[cite: 230, 337].
+* [cite_start]🔑 **License as Ignition Key:** Adds a layer of security ensuring only authorized persons can start the vehicle[cite: 339, 340].
+* [cite_start]📷 **Automated Surveillance:** A Python-based webcam script captures video footage of vehicles breaking traffic rules for visual evidence[cite: 341].
 
 ---
 
@@ -38,41 +39,30 @@ Traffic congestion and road accidents are critical challenges in growing cities.
 
 | Category | Components Used |
 | :--- | :--- |
-| **Microcontrollers** | ATmega328P (Arduino), AT89C2051 |
-| **Communication** | SIM900 GSM Module, Neo-6M GPS Module |
-| **Sensors** | MQ-3 (Alcohol), Piezoelectric (Impact/Shock) |
-| **Wireless Transfer** | Custom Copper Coils (Transmitter & Receiver), AC/DC Inverter |
-| **Software/Languages**| C/C++ (Arduino IDE), Python (Webcam logic) |
-| **Displays & Alerts** | 16x2 LCD, Active Buzzer |
+| **Microcontrollers** | [cite_start]ATmega328P (Arduino), AT89C2051 [cite: 137, 238] |
+| **Communication** | [cite_start]SIM900 GSM Module, Neo-6M GPS Module [cite: 76, 108] |
+| **Sensors** | [cite_start]MQ-3 (Alcohol), Piezoelectric (Impact/Shock) [cite: 181, 225] |
+| **Wireless Transfer** | [cite_start]Copper Coils (Transmitter & Receiver), AC/DC Inverter, 10MHz Oscillator [cite: 781, 802] |
+| **Software/Languages**| [cite_start]C (Arduino IDE), Python (Webcam logic) [cite: 55, 260] |
+| **Displays & Power** | [cite_start]16x2 LCD, 7805 & 7812 Voltage Regulators [cite: 164, 466] |
 
 ---
 
 ## ⚙️ System Architecture
 
-### 1. Traffic Signal Unit (Transmitter)
-Operates at the traffic light. When the signal turns red, an AC/DC converter and a 10MHz frequency oscillator energize a transmitting copper coil (Tesla coil principle) embedded in the road.
+### 1. Traffic Signal Unit (Base Unit)
+Operates at the traffic light. [cite_start]When the signal turns red, an AC/DC converter and a frequency oscillator energize a transmitting copper coil embedded in the road[cite: 821, 834].
 
-### 2. Vehicle Unit (Receiver)
-Acts as the smart black box. It contains the receiving coil, rectifier, and voltage regulator. 
-* **Rule Break Flow:** Red Signal $\rightarrow$ Transmitter Coil Active $\rightarrow$ Vehicle Crosses $\rightarrow$ Receiver Coil Energized $\rightarrow$ Microcontroller logs violation $\rightarrow$ GSM sends SMS.
+### 2. Vehicle Unit (Portable Device Side)
+Acts as the smart black box. [cite_start]It contains the receiving coil, rectifier, and voltage regulator[cite: 804, 806]. 
+* [cite_start]**Rule Break Flow:** Red Signal $\rightarrow$ Transmitter Coil Active $\rightarrow$ Vehicle Crosses $\rightarrow$ Receiver Coil Energized $\rightarrow$ AT89C2051/ATmega processes data $\rightarrow$ GSM sends SMS[cite: 336, 795].
 
 ### 3. Safety & Tracking Flow
-* **Accident:** Piezo sensor detects shock $\rightarrow$ GPS locks coordinates $\rightarrow$ GSM sends Google Maps link to authorities.
+* [cite_start]**Accident:** Piezo sensor detects shock $\rightarrow$ ATmega328P reads threshold $\rightarrow$ GPS locks coordinates $\rightarrow$ GSM sends Google Maps link to authorities[cite: 229, 230].
 
 ---
 
-## 💻 Code Structure
-
-* `/arduino_code`: Contains the C++ sketches for the ATmega328P handling sensor inputs, LCD display, and AT commands for the GSM/GPS modules.
-* `/python_scripts`: Contains the Python scripts utilizing OpenCV for capturing webcam footage when a violation is flagged.
-* `/circuit_diagrams`: Schematics for the power supply unit, wireless transmission coils, and main microcontroller wiring.
-
----
-
-## 📈 Future Scope
-* Integration with Cloud infrastructure (AWS/Azure) for centralized data logging and analytics.
-* Upgrading the Python webcam script to include AI-driven License Plate Recognition (ANPR).
-* Containerizing the backend reporting services using Docker for easier deployment in smart city control centers.
-
----
-*Developed as an academic project for automated traffic enforcement and IT infrastructure monitoring.*
+## 💡 Smart City Applications
+* [cite_start]**Traffic Violation Enforcement:** Automatically detects red-light jumping[cite: 920].
+* [cite_start]**Evidence Collection:** Captures images/video of violations for penalty issuance[cite: 925].
+* [cite_start]**Data Analytics:** Violation data can be analyzed to identify high-risk zones and peak violation times[cite: 928].
